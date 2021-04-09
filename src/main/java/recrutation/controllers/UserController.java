@@ -16,34 +16,34 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/allUsers")
+    @GetMapping("/users")
     public List<User> selectAllUsers(){
         return userService.selectAllUsers();
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return ResponseEntity.ok("User is removed");
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/users")
     public List<String> addUser(@Valid @RequestBody User user){
         return userService.addUser(user);
     }
 
-    @PutMapping("/updateUser/{id}")
+    @PutMapping("/users/{id}")
     public List<String> updateUser(@PathVariable Long id, @RequestBody User user){
         return userService.updateUser(id,user);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public User getUserById(@PathVariable Long id){
         return userService.getUser(id);
     }
 
-    @GetMapping(value = "/user")
-    public User getByEmail(@RequestParam String email){
+    @GetMapping(value = "/userEmail/{email:.+}")
+    public User getByEmail(@PathVariable String email){
         return userService.getByEmail(email);
     }
 

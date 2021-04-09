@@ -18,34 +18,29 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/allTasks")
+    @GetMapping("/tasks")
     public List<Task> selectAllTasks() {
         return taskService.selectAllTasks();
     }
 
-    @DeleteMapping("/task/{id}")
+    @DeleteMapping("/tasks/{id}")
     public boolean deleteTaskById(@PathVariable Long id, @AuthenticationPrincipal User user) {
         return taskService.deleteTask(id, user);
     }
 
-    @PostMapping("/addTask")
+    @PostMapping("/tasks")
     public List<String> addTask(@Valid @RequestBody Task task, @AuthenticationPrincipal User user) {
         return taskService.addTask(task, user);
     }
 
 
-    @PutMapping("/updateTask/{id}")
+    @PutMapping("/tasks/{id}")
     public List<String> updateTask(@PathVariable Long id, @Valid @RequestBody Task task, @AuthenticationPrincipal User user) {
         return taskService.updateTask(id, task, user);
     }
 
-    @GetMapping("/task/{id}")
-    public Task getTaskById(@PathVariable Long id) {
-        return taskService.getTask(id);
-    }
 
-
-    @GetMapping("/getTasks/{id}")
+    @GetMapping("/tasks/{id}")
     public List<Task> getByIdUser(@PathVariable Long id){
         return taskService.getByIdUser(id);
     }
