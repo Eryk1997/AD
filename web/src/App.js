@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import { Switch, Route } from "react-router-dom";
+
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer"
+
+import Login from "./Views/Login/Login"
+import Register from "./Views/Register/Register"
+import Task from "./Views/Task/Task"
+import NotFoundPage from "./Views/NotFoundPage/NotFoundPage"
+
+import { ProtectedRoute } from "./Configuration/ProtectedRoute"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App bg-dark">
+      <Navbar />
+      <Switch> 
+        <Route exact path="/" component={Login} />
+        <Route path="/registration" component={Register} />
+        <ProtectedRoute path="/task" component={Task} />
+        <Route component={NotFoundPage} />
+      </Switch>
+      <Footer />
     </div>
   );
 }
